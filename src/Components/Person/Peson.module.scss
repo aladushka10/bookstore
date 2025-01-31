@@ -1,0 +1,63 @@
+.personBtn {
+  height: 100%;
+  width: 84px;
+  background-color: #9c66c1;
+  border: 1px solid #cea2e5;
+  cursor: pointer;
+}
+.personFIO {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 236px;
+  height: 82px;
+  background-color: #9c66c1;
+
+  .personFIOWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 168px;
+
+    .personInitials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+      width: 48px;
+      background: #cea2e5;
+      color: #ffffff;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 34px;
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    }
+    .personName {
+      color: #ffffff;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 34px;
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .personBtn {
+  }
+
+  .personFIO {
+    .personFIOWrap {
+      .personInitials {
+      }
+      .personName {
+      }
+    }
+  }
+}
