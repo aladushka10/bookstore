@@ -46,11 +46,11 @@ const Navbar = () => {
           }`}
         >
           <Link
-            to="/posts"
+            to="/new_release"
             className={style.navbarLink}
             onClick={() => dispatch(toggleActive())}
           >
-            <p>Posts</p>
+            <p>New Release</p>
           </Link>
         </div>
         {/* {auth && (

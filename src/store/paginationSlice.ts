@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-export const fetchPosts = createAsyncThunk(
-  "posts/fetchPosts",
-  async (objectFromPostsPage, { rejectWithValue }) => {
-    const { limit, offset, searchQuery, ordering }: any = objectFromPostsPage
+export const fetchBooks = createAsyncThunk(
+  "books/fetchBooks",
+  async (_, { rejectWithValue }) => {
+  
     try {
       const response = await fetch(
-        `https://studapi.teachmeskills.by/blog/posts/?author__course_group=14&format=json&limit=${limit}&offset=${offset}&ordering=${ordering}&search=${searchQuery}`
+        `https://api.itbook.store/1.0/new`
+        
       )
       if (!response.ok) {
         throw new Error("error")
@@ -21,7 +22,7 @@ export const fetchPosts = createAsyncThunk(
 const paginationSlice = createSlice({
   name: "pagination",
   initialState: {
-    posts: [],
+    books: [],
     totalItems: 0,
     currentPage: 1,
     itemsPerPage: 9,
@@ -47,16 +48,16 @@ const paginationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPosts.pending, (state) => {
+      .addCase(fetchBooks.pending, (state) => {
         state.loading = true
         state.error = null
       })
-      .addCase(fetchPosts.fulfilled, (state, action) => {
+      .addCase(fetchBooks.fulfilled, (state, action) => {
         state.loading = false
-        state.posts = action.payload.results
+        state.books = action.payload.books
         state.totalItems = action.payload.count
       })
-      .addCase(fetchPosts.rejected, (state, action) => {
+      .addCase(fetchBooks.rejected, (state, action) => {
         ;(state.loading = false), (state.error = action.payload as string)
       })
   },

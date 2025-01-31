@@ -12,7 +12,7 @@ import {
 import { ReactComponent as LeftArrow } from "../../assets/left_arrow.svg"
 import { ReactComponent as RightArrow } from "../../assets/right_arrow.svg"
 import {
-  fetchPosts,
+  fetchBooks,
   setOrdering,
   setPage,
   setSearchQuery,
@@ -50,7 +50,7 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(
-      fetchPosts({
+      fetchBooks({
         limit: itemsPerPage,
         offset: (currentPage - 1) * itemsPerPage,
         searchQuery: searchQuery,

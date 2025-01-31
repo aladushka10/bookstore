@@ -3,7 +3,7 @@ import { ReactComponent as SearchBtn } from "../../assets/search.svg"
 import style from "./Search.module.scss"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  fetchPosts,
+  fetchBooks,
   setPage,
   setSearchQuery,
   setSearchQueryTitle,
@@ -38,7 +38,7 @@ const Search = () => {
   const handlerSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(
-      fetchPosts({
+      fetchBooks({
         limit: itemsPerPage,
         offset: 0,
         searchQuery: searchQuery,
