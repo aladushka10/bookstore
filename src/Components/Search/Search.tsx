@@ -3,11 +3,11 @@ import { ReactComponent as SearchBtn } from "../../assets/search.svg"
 import style from "./Search.module.scss"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  fetchBooks,
+  searchBooks,
   setPage,
-  // setSearchQuery,
-  // setSearchQueryTitle,
-} from "../../store/paginationSlice"
+  setSearchQuery,
+  setSearchQueryTitle,
+} from "../../store/searchSlice"
 import { ReactComponent as Cancel } from "../../assets/cancelIcon.svg"
 import { useEffect, useState } from "react"
 
@@ -30,28 +30,19 @@ const Search = () => {
     }
   }, [location.pathname])
 
-  const { itemsPerPage, searchQuery, ordering } = useSelector(
-    (state: IPagination) => state.pagination
-  )
+  const { itemsPerPage, searchQuery } = useSelector((state) => state.search)
 
   const [form, setFormOpen] = useState(false)
   const handlerSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(
-      fetchBooks({
-        limit: itemsPerPage,
-        offset: 0,
-        searchQuery: searchQuery,
-        ordering: ordering,
-      })
-    )
+
+    dispatch(searchBooks({ query: searchQuery }))
     dispatch(setPage(1))
-    // dispatch(setSearchQueryTitle(searchQuery))
-    // dispatch(setSearchQuery(""))
+    dispatch(setSearchQueryTitle(searchQuery))
   }
   const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    // dispatch(setSearchQuery(value))
+    dispatch(setSearchQuery(value))
   }
   return (
     <div className={style.searchWrap}>

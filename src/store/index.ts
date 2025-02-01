@@ -3,6 +3,7 @@ import activeSlice from "./activeSlice"
 import paginationSlice from "./paginationSlice"
 import bookSlice from "./bookSlice"
 import selectedBookSlice from "./selectedBookSlice"
+import searchSlice from "./searchSlice"
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     pagination: paginationSlice,
     books: bookSlice,
     selectedBook: selectedBookSlice,
+    search: searchSlice,
   },
 })

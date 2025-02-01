@@ -16,6 +16,7 @@ const App = () => {
           <Route path="/books" element={<NewRelease />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/search" element={<SearchPage />} />
+          {/* <Route path="/search/:value" element={<SearchPage />} /> */}
           <Route path="/books/:isbn13" element={<SelectedBook />} />
           <Route path="/:isbn13" element={<SelectedBook />} />
         </Route>
