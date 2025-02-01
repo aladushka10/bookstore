@@ -26,6 +26,7 @@ const Navbar = () => {
         <div className={style.navbarBtn}>
           <Person username={"Artem Malkin"} />
         </div>
+
         <div
           className={`${style.navbarBtn} ${
             btnIsActive("/") ? style.active : ""
@@ -36,23 +37,24 @@ const Navbar = () => {
             className={style.navbarLink}
             onClick={() => dispatch(toggleActive())}
           >
-            <p>Home</p>
+            <p>New Release</p>
           </Link>
         </div>
 
         <div
           className={`${style.navbarBtn} ${
-            btnIsActive("/posts") ? style.active : ""
+            btnIsActive("/bookmarks") ? style.active : ""
           }`}
         >
           <Link
-            to="/new_release"
+            to="/bookmarks"
             className={style.navbarLink}
             onClick={() => dispatch(toggleActive())}
           >
-            <p>New Release</p>
+            <p>Bookmarks</p>
           </Link>
         </div>
+
         {/* {auth && (
           <div
             className={`${style.navbarBtn} ${

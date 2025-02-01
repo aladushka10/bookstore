@@ -3,7 +3,7 @@ import style from "./PostCardMiddle.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEllipsisH, faBookmark } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch } from "react-redux"
-import { toggleFavorite } from "../../../store/postSlice"
+import { toggleFavorite } from "../../../store/bookSlice"
 
 interface IPostCard {
   id: number

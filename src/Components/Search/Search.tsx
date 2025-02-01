@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   fetchBooks,
   setPage,
-  setSearchQuery,
-  setSearchQueryTitle,
+  // setSearchQuery,
+  // setSearchQueryTitle,
 } from "../../store/paginationSlice"
 import { ReactComponent as Cancel } from "../../assets/cancelIcon.svg"
 import { useEffect, useState } from "react"
@@ -46,12 +46,12 @@ const Search = () => {
       })
     )
     dispatch(setPage(1))
-    dispatch(setSearchQueryTitle(searchQuery))
-    dispatch(setSearchQuery(""))
+    // dispatch(setSearchQueryTitle(searchQuery))
+    // dispatch(setSearchQuery(""))
   }
   const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    dispatch(setSearchQuery(value))
+    // dispatch(setSearchQuery(value))
   }
   return (
     <div className={style.searchWrap}>

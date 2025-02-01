@@ -1,16 +1,20 @@
-import Title from "../../Components/Title/Title"
-import style from "./NewRelease.module.scss"
-import { useDispatch, useSelector } from "react-redux"
-import { fetchBooks, setPage } from "../../store/paginationSlice"
-import { useEffect } from "react"
+import style from "./Bookmarks.module.scss"
 import BookCard from "../../Components/BookCard/BookCard"
+import Title from "../../Components/Title/Title"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { fetchBooks, setPage } from "../../store/paginationSlice"
 import { ReactComponent as LeftArrow } from "../../assets/left_arrow.svg"
 import { ReactComponent as RightArrow } from "../../assets/right_arrow.svg"
 
-const NewRelease = () => {
+const Bookmarks = () => {
   const dispatch = useDispatch()
-  const { books, loading, error, currentPage, itemsPerPage, totalItems } =
-    useSelector((state: IPagination) => state.pagination)
+
+  const { bookmarks } = useSelector((state: any) => state.books)
+
+  const { loading, error, currentPage, itemsPerPage } = useSelector(
+    (state: IPagination) => state.pagination
+  )
 
   useEffect(() => {
     dispatch(fetchBooks())
@@ -23,9 +27,10 @@ const NewRelease = () => {
     return <div>Error...</div>
   }
 
+  const totalItems = bookmarks.length
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
-  const paginatedBooks = books.slice(
+  const paginatedBooks = bookmarks.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
@@ -57,26 +62,29 @@ const NewRelease = () => {
   return (
     <div className={style.bookstore}>
       <div className={style.container}>
-        <Title title={"New Release"} />
+        <Title title={"Bookmarks"} />
         <div className={style.booksWrap}>
-          {paginatedBooks.map(
-            ({ title, subtitle, isbn13, price, image, url }: IBookCard) => {
-              return (
-                <div key={isbn13} className={style.bookWrap}>
-                  <BookCard
-                    title={title}
-                    subtitle={subtitle}
-                    isbn13={isbn13}
-                    price={price}
-                    image={image}
-                    url={url}
-                  />
-                </div>
-              )
-            }
+          {paginatedBooks.length > 0 ? (
+            paginatedBooks.map(
+              ({ title, subtitle, isbn13, price, image, url }: IBookCard) => {
+                return (
+                  <div key={isbn13} className={style.bookWrap}>
+                    <BookCard
+                      title={title}
+                      subtitle={subtitle}
+                      isbn13={isbn13}
+                      price={price}
+                      image={image}
+                      url={url}
+                    />
+                  </div>
+                )
+              }
+            )
+          ) : (
+            <div>No bookmarks yet!</div>
           )}
         </div>
-
         <div className={style.numbersWrapper}>
           <div className={style.leftArrowWrap}>
             <button
@@ -116,4 +124,4 @@ const NewRelease = () => {
     </div>
   )
 }
-export default NewRelease
+export default Bookmarks
