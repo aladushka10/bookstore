@@ -8,6 +8,7 @@ interface IBookCard {
 }
 
 interface IPagination {
+  search: any
   pagination: {
     books: IBookCard[]
     totalItems: number
