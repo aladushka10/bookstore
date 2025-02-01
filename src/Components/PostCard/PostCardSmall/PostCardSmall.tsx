@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEllipsisH, faBookmark } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux"
 
-import { toggleFavorite } from "../../../store/postSlice"
+import { toggleFavorite } from "../../../store/bookSlice"
 interface IPostCard {
   id: number
   image?: string

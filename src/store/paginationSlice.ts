@@ -1,13 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-export const fetchPosts = createAsyncThunk(
-  "posts/fetchPosts",
-  async (objectFromPostsPage, { rejectWithValue }) => {
-    const { limit, offset, searchQuery, ordering }: any = objectFromPostsPage
+export const fetchBooks = createAsyncThunk(
+  "books/fetchBooks",
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        `https://studapi.teachmeskills.by/blog/posts/?author__course_group=14&format=json&limit=${limit}&offset=${offset}&ordering=${ordering}&search=${searchQuery}`
-      )
+      const response = await fetch(`https://api.itbook.store/1.0/new`)
       if (!response.ok) {
         throw new Error("error")
       }
@@ -25,9 +22,8 @@ const paginationSlice = createSlice({
     totalItems: 0,
     currentPage: 1,
     itemsPerPage: 9,
-    searchQueryTitle: "",
-    searchQuery: "",
-    ordering: "",
+    // searchQueryTitle: "",
+    // searchQuery: "",
     loading: false,
     error: null as string | null,
   },
@@ -35,15 +31,15 @@ const paginationSlice = createSlice({
     setPage: (state, action) => {
       state.currentPage = action.payload
     },
-    setSearchQueryTitle: (state, action) => {
-      state.searchQueryTitle = action.payload
-    },
-    setSearchQuery: (state, action) => {
-      state.searchQuery = action.payload
-    },
-    setOrdering: (state, action) => {
-      state.ordering = action.payload
-    },
+    // setSearchQueryTitle: (state, action) => {
+    //   state.searchQueryTitle = action.payload
+    // },
+    // setSearchQuery: (state, action) => {
+    //   state.searchQuery = action.payload
+    // },
+    // setOrdering: (state, action) => {
+    //   state.ordering = action.payload
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -53,15 +49,15 @@ const paginationSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.loading = false
-        state.posts = action.payload.results
-        state.totalItems = action.payload.count
+        state.books = action.payload.books
+        state.totalItems = action.payload.total
       })
-      .addCase(fetchPosts.rejected, (state, action) => {
-        ;(state.loading = false), (state.error = action.payload as string)
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload as string
       })
   },
 })
-export const { setPage, setSearchQuery, setOrdering, setSearchQueryTitle } =
-  paginationSlice.actions
+export const { setPage } = paginationSlice.actions
 
 export default paginationSlice.reducer

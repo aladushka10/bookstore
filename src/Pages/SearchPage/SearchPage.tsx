@@ -18,7 +18,7 @@ import {
   setSearchQuery,
 } from "../../store/paginationSlice"
 import Title from "../../Components/Title/Title"
-import { toggleFavorite } from "../../store/postSlice"
+import { toggleBookmark } from "../../store/bookSlice"
 
 interface IPostCard {
   id: number
@@ -34,7 +34,7 @@ const Search = () => {
   const dispatch = useDispatch()
 
   const {
-    posts,
+    books,
     loading,
     error,
     currentPage,
@@ -104,7 +104,7 @@ const Search = () => {
       <div className={style.container}>
         <Title title={`Search results "${searchQueryTitle}"`} />
         <div className={style.postsCardWrap}>
-          {posts.map(
+          {books.map(
             ({ id, image, date, text, title, isFavorite }: IPostCard) => (
               <div key={id}>
                 <div className={style.postCardWrap}>
@@ -124,7 +124,7 @@ const Search = () => {
                           className={style.faBookmark}
                           onClick={() => {
                             dispatch(
-                              toggleFavorite({
+                              toggleBookmark({
                                 id,
                                 image,
                                 text,

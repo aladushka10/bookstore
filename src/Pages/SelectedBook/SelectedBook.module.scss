@@ -1,10 +1,10 @@
-.postCard {
+.bookCard {
   .container {
     max-width: 900px;
     padding: 72px 15px 15px 0;
     margin: auto;
-    .homePostWrap {
-      width: 153px;
+    .homeBookWrap {
+      width: 270px;
       display: flex;
       align-items: center;
 
@@ -16,121 +16,140 @@
         font-size: 16px;
         font-weight: 400;
         &:hover {
-          color: rgba(83, 96, 205, 1);
+          color: #9c66c1;
         }
       }
-      .postId {
+      .bookId {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-family: Inter;
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;
-        color: rgba(141, 142, 151, 1);
+        color: #cea2e5;
 
         margin: 0;
         &::before {
           content: "|";
           display: block;
-          margin-right: 8px;
+          margin-right: 15px;
         }
       }
     }
-    .postCardWrap {
-      .postCardTitle {
-        font-family: Inter;
-        font-size: 48px;
-        font-weight: 700;
-        text-align: left;
-        margin-bottom: 48px;
-      }
-      .postCardInf {
+    .bookCardWrap {
+      .bookCardInf {
         max-width: 836px;
         margin: auto;
+        .bookCardWrapUp {
+          .imgWrap {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 48px;
+            max-height: 450px;
+            max-width: 836px;
+            overflow: hidden;
+            .bookCardImg {
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+          .bookCardTitle {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: left;
+            margin-bottom: 48px;
+          }
 
-        .imgWrap {
-          display: flex;
-          justify-content: center;
-          margin: 0 auto 48px;
-          max-height: 450px;
-          max-width: 836px;
-          overflow: hidden;
-          .postCardImg {
-            object-fit: cover;
-            object-position: center;
+          .bookDecription {
+            max-width: 800px;
+            margin-bottom: 40px;
+            font-family: Inter;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 32px;
+            text-align: left;
+          }
+          .bookInfTable {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+
+            margin-bottom: 80px;
+            border: 0.5px solid #9c66c1;
+
+            .bookTableValue {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 20px;
+              border: 0.5px solid #9c66c1;
+            }
           }
         }
-        .postCardText {
-          max-width: 800px;
-          margin: 0 auto 48px;
-          font-family: Inter;
-          font-size: 18px;
-          font-weight: 400;
-          line-height: 32px;
-          text-align: left;
-        }
-        .postCardWrapDown {
-          max-width: 800px;
+        .saveDotsWrap {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
           margin-bottom: 72px;
-          .thumbsWrap {
-            width: 150px;
+
+          .interactivePart {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            .thumbsUpWrap {
-              background-color: rgba(232, 232, 232, 1);
-              color: rgba(49, 48, 55, 1);
-              width: 70px;
-              height: 50px;
-              border: none;
-              border-radius: 2px;
-              cursor: pointer;
-            }
-            .thumbsDownWrap {
-              background-color: rgba(232, 232, 232, 1);
-              color: rgba(49, 48, 55, 1);
-              width: 70px;
-              height: 50px;
-              border: none;
-              border-radius: 2px;
-              cursor: pointer;
-            }
-          }
-          .favoriteWrap {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
             height: 50px;
-            width: 230px;
-            background-color: rgba(232, 232, 232, 1);
-            border: none;
-            border-radius: 2px;
-            color: rgba(49, 48, 55, 1);
+            width: 100%;
 
             cursor: pointer;
-
-            &:hover {
-              background-color: rgba(83, 96, 205, 1);
+            .faBookmark {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              border: none;
+              background-color: #cea2e5;
+              border-radius: 2px;
+              color: #fff;
+              &::after {
+                content: "Add to favorites";
+                color: #fff;
+                margin-left: 15px;
+                font-family: Inter;
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 24px;
+              }
+              &:hover {
+                color: #cea2e5;
+              }
+              &:active {
+                color: #9c66c1;
+              }
             }
-            &:active {
-              background-color: rgba(34, 49, 170, 1);
-            }
-
-            &::after {
-              content: "Add to favorites";
-              color: rgba(49, 48, 55, 1);
-              margin-left: 15px;
-              font-family: Inter;
-              font-size: 15px;
-              font-weight: 600;
-              line-height: 24px;
+            .faCartShopping {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              border: none;
+              background-color: #cea2e5;
+              border-radius: 2px;
+              color: #fff;
+              &::after {
+                content: "Add to favorites";
+                color: #fff;
+                margin-left: 15px;
+                font-family: Inter;
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 24px;
+              }
+              &:hover {
+                color: #cea2e5;
+              }
+              &:active {
+                color: #9c66c1;
+              }
             }
           }
         }
