@@ -18,6 +18,7 @@ const Bookmarks = () => {
 
   useEffect(() => {
     dispatch(fetchBooks())
+    setPage(1)
   }, [])
 
   if (loading) {
