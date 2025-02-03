@@ -18,6 +18,7 @@ const CartPage = () => {
 
   useEffect(() => {
     dispatch(fetchBooks())
+    setPage(1)
   }, [currentPage])
 
   if (loading) {
