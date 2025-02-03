@@ -1,12 +1,7 @@
-import { ReactNode } from "react"
+import { ITitle } from "../../types/types"
 import style from "../Title/Title.module.scss"
 
-interface IProps {
-  title?: string
-  children?: ReactNode
-}
-
-const Title = ({ title, children }: IProps) => {
+const Title = ({ title, children }: ITitle) => {
   if (title === undefined) {
     return <h1>{children}</h1>
   }

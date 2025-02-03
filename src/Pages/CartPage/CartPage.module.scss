@@ -1,9 +1,9 @@
-.bookstore {
+.cartWrap {
   .container {
     max-width: 900px;
     padding: 72px 15px 15px 0;
     margin: auto;
-    .booksWrap {
+    .booksCardWrap {
       display: grid;
       justify-content: space-between;
       grid-template-columns: repeat(3, 1fr);

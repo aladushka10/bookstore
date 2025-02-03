@@ -6,6 +6,9 @@ import SearchPage from "./Pages/SearchPage/SearchPage"
 import NewRelease from "./Pages/NewRelease/NewRelease"
 import Bookmarks from "./Pages/Bookmarks/Bookmarks"
 import SelectedBook from "./Pages/SelectedBook/SelectedBook"
+import CartPage from "./Pages/CartPage/CartPage"
+import SignIn from "./Pages/SignIn/SignIn"
+import SignUp from "./Pages/SignUp/SignUp"
 
 const App = () => {
   return (
@@ -16,9 +19,11 @@ const App = () => {
           <Route path="/books" element={<NewRelease />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/search" element={<SearchPage />} />
-          {/* <Route path="/search/:value" element={<SearchPage />} /> */}
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/books/:isbn13" element={<SelectedBook />} />
           <Route path="/:isbn13" element={<SelectedBook />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Route>
       </Routes>
     </>

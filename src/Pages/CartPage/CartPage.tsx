@@ -1,16 +1,16 @@
-import style from "./Bookmarks.module.scss"
-import BookCard from "../../Components/BookCard/BookCard"
-import Title from "../../Components/Title/Title"
-import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
+import style from "./CartPage.module.scss"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchBooks, setPage } from "../../store/paginationSlice"
+import Title from "../../Components/Title/Title"
+import BookCard from "../../Components/BookCard/BookCard"
 import Pagination from "../../Components/Pagination/Pagination"
 import { IBook, IBookCard, IPagination } from "../../types/types"
 
-const Bookmarks = () => {
+const CartPage = () => {
   const dispatch = useDispatch()
 
-  const { bookmarks } = useSelector((state: IBook) => state.books)
+  const { cart } = useSelector((state: IBook) => state.books)
 
   const { loading, error, currentPage, itemsPerPage } = useSelector(
     (state: IPagination) => state.pagination
@@ -18,18 +18,18 @@ const Bookmarks = () => {
 
   useEffect(() => {
     dispatch(fetchBooks())
-  }, [])
+  }, [currentPage])
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>loading...</div>
   }
   if (error) {
     return <div>Error...</div>
   }
 
-  const totalItems = bookmarks.length
+  const totalItems = cart.length
 
-  const paginatedBooks = bookmarks.slice(
+  const paginatedBooks = cart.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
@@ -39,10 +39,10 @@ const Bookmarks = () => {
   }
 
   return (
-    <div className={style.bookstore}>
+    <div className={style.cartWrap}>
       <div className={style.container}>
-        <Title title={"Bookmarks"} />
-        <div className={style.booksWrap}>
+        <Title title={`My cart`} />
+        <div className={style.booksCardWrap}>
           {paginatedBooks.length > 0 ? (
             paginatedBooks.map(
               ({ title, subtitle, isbn13, price, image, url }: IBookCard) => {
@@ -61,7 +61,7 @@ const Bookmarks = () => {
               }
             )
           ) : (
-            <div>No bookmarks yet!</div>
+            <div>No books in cart yet!</div>
           )}
         </div>
         <div className={style.numbersWrapper}>
@@ -76,4 +76,5 @@ const Bookmarks = () => {
     </div>
   )
 }
-export default Bookmarks
+
+export default CartPage
