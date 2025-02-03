@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { IBookCard } from "../types/types"
 
 const bookSlice = createSlice({
   name: "books",
@@ -8,6 +9,7 @@ const bookSlice = createSlice({
     error: null,
     selectedBook: null,
     bookmarks: [] as IBookCard[],
+    cart: [] as IBookCard[],
   },
   reducers: {
     selectBook(state, action) {
@@ -29,15 +31,25 @@ const bookSlice = createSlice({
       state.error = action.payload
     },
     toggleBookmark: (state, action) => {
-      const obj = action.payload
       const index = state.bookmarks.findIndex(
-        (state: any) => state.isbn13 === obj.isbn13
+        (state: any) => state.isbn13 === action.payload.isbn13
       )
 
       if (index === -1) {
-        state.bookmarks.push(obj)
+        state.bookmarks.push(action.payload)
       } else {
         state.bookmarks.splice(index, 1)
+      }
+    },
+    toggleCart: (state, action) => {
+      const index = state.cart.findIndex(
+        (state: any) => state.isbn13 === action.payload.isbn13
+      )
+
+      if (index === -1) {
+        state.cart.push(action.payload)
+      } else {
+        state.cart.splice(index, 1)
       }
     },
   },
@@ -50,6 +62,7 @@ export const {
   fetchBookStart,
   fetchBookSuccess,
   toggleBookmark,
+  toggleCart,
 } = bookSlice.actions
 export const fetchBooksAction = () => {
   return { type: "books/fetchBooks" }

@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping, faBookmark } from "@fortawesome/free-solid-svg-icons"
 import style from "./BookCard.module.scss"
-import { NavLink, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { toggleBookmark } from "../../store/bookSlice"
+import { toggleBookmark, toggleCart } from "../../store/bookSlice"
+import { IBook, IBookCard, ISignIn } from "../../types/types"
 
 const BookCard = ({
   title,
@@ -16,10 +17,16 @@ const BookCard = ({
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const bookmarks = useSelector((state: any) => state.books.bookmarks)
+  const { auth } = useSelector((state: ISignIn) => state.signIn)
+
+  const bookmarks = useSelector((state: IBook) => state.books.bookmarks)
+
   const isBookmarked = bookmarks.some(
     (book: IBookCard) => book.isbn13 === isbn13
   )
+
+  const cart = useSelector((state: IBook) => state.books.cart)
+  const isInCart = cart.some((cart: IBookCard) => cart.isbn13 === isbn13)
 
   return (
     <div className={style.bookCardWrap}>
@@ -68,18 +75,37 @@ const BookCard = ({
               icon={faBookmark}
               style={{
                 fontSize: "25px",
-                color: isBookmarked ? "9c66c1" : "black",
+                color: isBookmarked ? "9c66c1" : "",
               }}
               cursor={"pointer"}
             />
           </button>
-          <button className={style.faCartShopping}>
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              style={{ fontSize: "25px" }}
-              cursor={"pointer"}
-            />
-          </button>
+          {auth && (
+            <button
+              onClick={() => {
+                dispatch(
+                  toggleCart({
+                    title,
+                    subtitle,
+                    isbn13,
+                    price,
+                    image,
+                    url,
+                  })
+                )
+              }}
+              className={style.faCartShopping}
+            >
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                style={{
+                  fontSize: "25px",
+                  color: isInCart ? "9c66c1" : "",
+                }}
+                cursor={"pointer"}
+              />
+            </button>
+          )}
         </div>
       </div>
     </div>

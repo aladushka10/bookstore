@@ -1,9 +1,8 @@
 import { Outlet } from "react-router-dom"
 import Header from "../../Components/Header/Header"
 import { ActiveContext } from "../../Сontext/Context"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Navbar from "../../Components/Navbar/Navbar"
-import { useSelector } from "react-redux"
 import Footer from "../../Components/Footer/Footer"
 import style from "./Layout.module.scss"
 

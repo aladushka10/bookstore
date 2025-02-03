@@ -1,11 +1,11 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
-import { ReactComponent as Light } from "../../assets/light.svg"
-import { ReactComponent as Dark } from "../../assets/dark.svg"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import style from "./Navbar.module.scss"
 import styles from "./Navbar.module.scss"
 import Person from "../Person/Person"
 import { toggleActive } from "../../store//activeSlice"
+import { signOutUser } from "../../store/signInSlice"
+import { IActive, ISignIn } from "../../types/types"
 
 const Navbar = () => {
   const location = useLocation()
@@ -13,8 +13,14 @@ const Navbar = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { isActive } = useSelector((state) => state.active)
-  // const { auth } = useSelector((state: any) => state.signIn)
+  const { isActive } = useSelector((state: IActive) => state.active)
+  const { auth } = useSelector((state: ISignIn) => state.signIn)
+
+  const logOutHandler = () => {
+    dispatch(signOutUser())
+    dispatch(toggleActive())
+    navigate("/sign-in")
+  }
 
   return (
     <div
@@ -24,7 +30,7 @@ const Navbar = () => {
     >
       <div className={style.navbarBtnsWrap}>
         <div className={style.navbarBtn}>
-          <Person username={"Artem Malkin"} />
+          <Person />
         </div>
 
         <div
@@ -54,30 +60,23 @@ const Navbar = () => {
             <p>Bookmarks</p>
           </Link>
         </div>
-
-        {/* {auth && (
-          <div
-            className={`${style.navbarBtn} ${
-              btnIsActive("/my-posts") ? style.active : ""
-            }`}
-          >
-            <Link
-              to="/my-posts"
-              className={style.navbarLink}
-              onClick={() => dispatch(toggleActive())}
-            >
-              <p>My Posts</p>
-            </Link>
-          </div>
-        )} */}
       </div>
       <div className={style.themeAndLogOutWrap}>
-        <button
-          onClick={() => dispatch(toggleActive(), navigate("/sign-in"))}
-          className={style.logOutBtn}
-        >
-          Log In
-        </button>
+        {auth ? (
+          <button onClick={logOutHandler} className={style.logOutBtn}>
+            Log Out
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              dispatch(toggleActive())
+              navigate("/sign-in")
+            }}
+            className={style.logOutBtn}
+          >
+            Log In
+          </button>
+        )}
       </div>
     </div>
   )
