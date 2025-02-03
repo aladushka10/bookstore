@@ -17,14 +17,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 168px;
+    max-width: 170px;
+    min-width: 125px;
 
     .personInitials {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 48px;
-      width: 48px;
+      height: 40px;
+      width: 40px;
       background: #cea2e5;
       color: #ffffff;
       font-family: Inter;
@@ -32,8 +33,7 @@
       font-weight: 600;
       line-height: 34px;
       text-align: center;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
+      margin-right: 10px;
     }
     .personName {
       color: #ffffff;
@@ -46,6 +46,11 @@
       text-decoration-skip-ink: none;
     }
   }
+}
+.personIcon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 @media (max-width: 320px) {

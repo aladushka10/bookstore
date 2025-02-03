@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { IBookCard } from "../types/types"
 
 export const fetchBooks = createAsyncThunk(
   "books/fetchBooks",
@@ -18,12 +19,10 @@ export const fetchBooks = createAsyncThunk(
 const paginationSlice = createSlice({
   name: "pagination",
   initialState: {
-    posts: [],
+    books: [] as IBookCard[],
     totalItems: 0,
     currentPage: 1,
     itemsPerPage: 9,
-    // searchQueryTitle: "",
-    // searchQuery: "",
     loading: false,
     error: null as string | null,
   },
@@ -31,15 +30,6 @@ const paginationSlice = createSlice({
     setPage: (state, action) => {
       state.currentPage = action.payload
     },
-    // setSearchQueryTitle: (state, action) => {
-    //   state.searchQueryTitle = action.payload
-    // },
-    // setSearchQuery: (state, action) => {
-    //   state.searchQuery = action.payload
-    // },
-    // setOrdering: (state, action) => {
-    //   state.ordering = action.payload
-    // },
   },
   extraReducers: (builder) => {
     builder

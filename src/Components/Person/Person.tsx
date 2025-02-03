@@ -1,15 +1,22 @@
 import { useMemo } from "react"
 import style from "./Peson.module.scss"
+import { useSelector } from "react-redux"
+import { ReactComponent as PersonIcon } from "../../assets/person.svg"
+import { ISignIn } from "../../types/types"
 
-interface IPerson {
-  username: string
-}
+const Person = () => {
+  const { username } = useSelector((state: ISignIn) => state.signIn)
 
-const Person = ({ username }: IPerson) => {
   const initials = useMemo(() => {
+    if (!username)
+      return (
+        <div className={style.personIcon}>
+          <PersonIcon />
+        </div>
+      )
     return username
       .split(" ")
-      .map((letter) => letter[0])
+      .map((letter: string) => letter[0])
       .join("")
   }, [username])
   return (
@@ -19,7 +26,7 @@ const Person = ({ username }: IPerson) => {
           <span>{initials}</span>
         </div>
         <div className={style.personName}>
-          <span>{username}</span>
+          <span>{username || "Guest"}</span>
         </div>
       </div>
     </div>

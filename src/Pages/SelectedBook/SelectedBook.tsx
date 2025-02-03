@@ -8,7 +8,8 @@ import { ReactComponent as RightArrow } from "../../assets/right_arrow.svg"
 import { useDispatch, useSelector } from "react-redux"
 
 import { getBookInfo } from "../../store/selectedBookSlice"
-import { toggleBookmark } from "../../store/bookSlice"
+import { toggleBookmark, toggleCart } from "../../store/bookSlice"
+import { IBook, IBookCard, IPagination, ISelectedPage } from "../../types/types"
 
 const SelectedBook = () => {
   const { isbn13 } = useParams()
@@ -22,15 +23,18 @@ const SelectedBook = () => {
   const previousBook = books[currentIndex - 1]
   const nextBook = books[currentIndex + 1]
 
-  const bookmarks = useSelector((state: any) => state.books.bookmarks)
+  const bookmarks = useSelector((state: IBook) => state.books.bookmarks)
   const isBookmarked = bookmarks.some(
     (book: IBookCard) => book.isbn13 === isbn13
   )
 
+  const cart = useSelector((state: IBook) => state.books.cart)
+  const isInCart = cart.some((cart: IBookCard) => cart.isbn13 === isbn13)
+
   useEffect(() => {
     dispatch(getBookInfo({ isbn13 }))
   }, [isbn13])
-  console.log(book)
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -96,10 +100,18 @@ const SelectedBook = () => {
                     cursor={"pointer"}
                   />
                 </button>
-                <button className={style.faCartShopping}>
+                <button
+                  onClick={() => {
+                    dispatch(toggleCart(book))
+                  }}
+                  className={style.faCartShopping}
+                >
                   <FontAwesomeIcon
                     icon={faCartShopping}
-                    style={{ fontSize: "25px", color: "white" }}
+                    style={{
+                      fontSize: "25px",
+                      color: isInCart ? "9c66c1" : "white",
+                    }}
                     cursor={"pointer"}
                   />
                 </button>

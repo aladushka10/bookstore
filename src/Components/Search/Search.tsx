@@ -10,14 +10,7 @@ import {
 } from "../../store/searchSlice"
 import { ReactComponent as Cancel } from "../../assets/cancelIcon.svg"
 import { useEffect, useState } from "react"
-
-interface IPagination {
-  pagination: {
-    itemsPerPage: number
-    searchQuery: string
-    ordering: string
-  }
-}
+import { ISearch } from "../../types/types"
 
 const Search = () => {
   const navigate = useNavigate()
@@ -30,7 +23,7 @@ const Search = () => {
     }
   }, [location.pathname])
 
-  const { itemsPerPage, searchQuery } = useSelector((state) => state.search)
+  const { searchQuery } = useSelector((state: ISearch) => state.search)
 
   const [form, setFormOpen] = useState(false)
   const handlerSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {

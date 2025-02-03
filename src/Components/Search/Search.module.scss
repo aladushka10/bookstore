@@ -41,6 +41,9 @@
   }
 }
 .searchBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 84px;
   background-color: #9c66c1;
