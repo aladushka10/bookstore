@@ -33,11 +33,11 @@ const paginationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPosts.pending, (state) => {
+      .addCase(fetchBooks.pending, (state) => {
         state.loading = true
         state.error = null
       })
-      .addCase(fetchPosts.fulfilled, (state, action) => {
+      .addCase(fetchBooks.fulfilled, (state, action) => {
         state.loading = false
         state.books = action.payload.books
         state.totalItems = action.payload.total

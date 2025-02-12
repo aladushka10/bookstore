@@ -1,22 +1,11 @@
 import { useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
 import style from "./SearchPage.module.scss"
 import { useDispatch, useSelector } from "react-redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faThumbsUp,
-  faThumbsDown,
-  faEllipsisH,
-  faBookmark,
-} from "@fortawesome/free-solid-svg-icons"
-import { ReactComponent as LeftArrow } from "../../assets/left_arrow.svg"
-import { ReactComponent as RightArrow } from "../../assets/right_arrow.svg"
-import { searchBooks, setPage, setSearchQuery } from "../../store/searchSlice"
+import { searchBooks, setPage } from "../../store/searchSlice"
 import Title from "../../Components/Title/Title"
-import { toggleBookmark } from "../../store/bookSlice"
 import BookCard from "../../Components/BookCard/BookCard"
 import Pagination from "../../Components/Pagination/Pagination"
-import { IBookCard, IPagination, ISearch } from "../../types/types"
+import { IBookCard, ISearch } from "../../types/types"
 
 const SearchPage = () => {
   const dispatch = useDispatch()
@@ -29,7 +18,7 @@ const SearchPage = () => {
     itemsPerPage,
     totalItems,
     searchQuery,
-  } = useSelector((state: IPagination) => state.search)
+  } = useSelector((state: ISearch) => state.search)
 
   const searchQueryTitle = useSelector(
     (state: ISearch) => state.search.searchQueryTitle
